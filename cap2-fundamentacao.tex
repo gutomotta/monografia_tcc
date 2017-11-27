@@ -1,0 +1,115 @@
+\chapter{Fundamentação Teórica}
+\label{cap:fundamentacao}
+% aqui a ênfase está nos conceitos e definições
+
+Neste capítulo serão introduzidos conceitos necessários para a compreensão do problema e da solução estudada, passando pelas áreas de teoria musical (como a definição de um acorde à partir de outros conceitos como nota e intervalo) e computação musical (como sinais de áudio, transformada de Fourier e cromagrama).
+
+\section{Acordes}
+    % Inclui discussão sobre notação
+    De forma pouco rigorosa, um \textbf{acorde} pode ser definido como diversas notas musicais que soam ao mesmo tempo. Para entender melhor esse conceito e também o conceito de nota musical, é interessante relembrar as características do som em si.
+    
+    % Ref. Muller 1.3.1
+    % Som
+    O som é uma onda mecânica - em particular, é a propagação de compressões e descompressões de um meio material, como o ar. Ele se propaga a partir de uma fonte sonora, como um instrumento musical, até atingir um receptor, como o ouvido humano ou um microfone. Em geral, ele é representado como a variação da pressão do ar num dado ponto do espaço em função do tempo.
+
+    É chamada \textbf{senoide} uma onda sonora cuja forma é perfeitamente senoidal. As senoides são os sons mais simples possíveis, e a variação da pressão que as caracteriza ocorre com uma determinada \textbf{frequência}, medida em Hertz~(Hz). Os sons que escutamos na natureza, e também aqueles produzidos por instrumentos musicais, são, por sua vez, mais complexos, e podem ser descritos como uma composição (soma) de diversas senoides com amplitudes e frequências diferentes.
+
+    O ser humano é capaz de identificar a frequência dos sons através do correlato psicoacústico chamado \textbf{altura}, que é a propriedade que diferencia um som grave, de baixa frequência, de um som agudo, de alta frequência.
+
+    A alguns sons, não podemos associar uma altura determinada, pois possuem energia em muitas frequências diferentes: o som de um pandeiro, por exemplo. Aos outros sons, aos quais conseguimos associar uma altura determinada, chamamos de \textbf{notas musicais}.
+    
+    Define-se como \textbf{intervalo} a diferença de altura entre duas notas musicais.
+    
+    A percepção humana de altura possui uma propriedade interessante: duas notas, quando a frequência de uma é o dobro da frequência da outra, são entendidas como possuindo equivalência sonora. Notas que respeitam essa condição têm entre si um intervalo de \textbf{uma oitava}. Se a razão entre frequências for 4, então diz-se que as notas têm um intervalo de \textbf{duas oitavas}, e assim sucessivamente.
+    
+    A música ocidental, ao longo da história, desenvolveu a chamada \textbf{escala diatônica}, que divide uma oitava em 12 intervalos entendidos perceptualmente como iguais (nota-se que a percepção humana de altura varia logaritmicamente em relação à variação de frequências). Tal intervalo é chamado de \textbf{um semitom}. Nessa escala, entre duas notas que possuem um intervalo de uma oitava, há uma sequência de outras dez notas. 
+
+    A escala diatônica é cíclica. Partindo-se de uma nota e aumentando-a em um semitom 12 vezes, se alcança a oitava dessa nota, e esse processo pode ser repetido até que se obtenha uma nota tão aguda que chega a ser inaudível (o intervalo de frequências sonoras audíveis pelo ser humano vai de 20~Hz a 20.000~Hz).
+
+    A música ocidental é construída apoiando-se no semitom como o menor intervalo que distingue duas notas. Dessa forma, nomeiam-se 7 notas musicais de forma cíclica: algumas dessas notas possuem entre si um intervalo de um semitom e outras de dois semitons (ou \textbf{um tom}). 
+    A cada uma das 7 notas, é atribuída uma letra como forma simplificada de representação. Para representar as outras 5 notas não contempladas com os 7 nomes, usam-se as palavras \textbf{sustenido} (que acrescenta uma nota de um semitom) e \textbf{bemol} (que diminui uma nota de um semitom). Para a representação simplificada, sustenido e bemol possuem os símbolos $\sharp$ e $\flat$, respectivamente.
+    
+    \begin{table}
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Nota (sustenido)} & \textbf{Símbolo ($\sharp$)}   &  \textbf{Símbolo ($\flat$)} & \textbf{Nota (bemol)} \\
+        \hline
+        Dó             &  C          &  C         &  Dó            \\
+        Dó sustenido   &  C$\sharp$  &  D$\flat$  &  Ré bemol      \\
+        Ré             &  D          &  D         &  Ré            \\
+        Ré sustenido   &  D$\sharp$  &  E$\flat$  &  Mi bemol      \\
+        Mi             &  E          &  E         &  Mi            \\
+        Fá             &  F          &  F         &  Fá            \\
+        Fá sustenido   &  F$\sharp$  &  G$\flat$  &  Sol bemol     \\
+        Sol            &  G          &  G         &  Sol           \\
+        Sol sustenido  &  G$\sharp$  &  A$\flat$  &  Lá bemol      \\
+        Lá             &  A          &  A         &  Lá            \\
+        Lá sustenido   &  A$\sharp$  &  B$\flat$  &  Si bemol      \\
+        Si             &  B          &  B         &  Si            \\
+        \hline
+    \end{tabular}
+    \caption{Notas musicais da escala diatônica e seus nomes}
+    \label{tabela:notas}
+    \end{table}
+    
+    A tabela \ref{tabela:notas} mostra todas as notas da escala diatônica, começando da nota dó, e cada linha tem a nota exatamente um semitom acima da nota anterior.
+
+    Já que podemos classificar todas as notas musicais como uma entre as 12 existentes na escala diatônica, pode-se definir o conceito de \textbf{classes de altura}. Uma classe de altura é um conjunto de notas que possuem intervalos de um número inteiro de oitavas entre si. Por exemplo, a classe de altura \textbf{C} é o conjunto de todas as notas dó, não importando em qual oitava se encontram.
+     
+    Como anteriormente definido, um acorde é um conjunto de notas que soam ao mesmo tempo. Na ótica da escala diatônica, podemos simplificar essa definição como um conjunto de classes de altura que soam ao mesmo tempo. Com essa nova definição, um acorde pode conter até 12 elementos, que são as classes de altura existentes. Dois acordes são iguais se soam as mesmas classes de altura, não importando se as oitavas de cada nota dos dois acordes são iguais ou não.
+    
+    Na versão final desta monografia, esta seção ainda explicará alguns conceitos que serão posteriormente necessários para o entendimento do algoritmo apresentado na seção \ref{sec:classifier}:
+
+    \begin{itemize}
+        \item O que é uma tríade (uso na música ocidental folclórica e popular é ubíquo)
+        \item Tipos de tríades: maiores e menores, 5ª aumentada, 5ª diminuta
+        \item Outros tipos de acordes, notas acrescentadas etc.
+        \item Notações de acordes
+        \item Ambiguidades de representação
+    \end{itemize}
+
+    %\subsection{Notação}
+    %    \begin{itemize}
+    %        \item Notações diferentes para representar acordes
+    %        \item Ambiguidades de representação
+    %    \end{itemize}
+
+
+\section{Representação de sinais de áudio}
+    % inclui FT, STFT e CQT
+    
+    Conforme já visto, o som pode ser descrito como a variação da pressão (em algum ponto do espaço) em função do tempo.
+    
+    % Ref. livro DSP
+    % Como o som é representado (amostragem, arquivos WAV)
+    Para representar essa função no domínio digital, é necessário discretizá-la, tanto no eixo do tempo como no da pressão. Assim, o som é representado em computadores como uma sequência de valores reais (amostras) que correspondem à variação da pressão em pontos espaçados uniformemente no tempo. O número de amostras presentes em um segundo de áudio é chamado \textbf{taxa de amostragem}. A discretização do sinal analógico introduz certas limitações - como o erro de quantização ou a impossibilidade de representar sons com frequências maiores que metade da taxa de amostragem \citep[ver][seções 1.3.2 e 1.6]{dsp}.
+    
+    % Representado em função do tempo; estamos interessados nas freqs do som
+    Quando lidamos com reconhecimento de acordes, é útil identificar quais frequências estão soando num som. No entanto, esta tarefa não é trivial quando representamos o som como a variação da pressão em função do tempo. Para realizá-la, pode-se usar a \textbf{transformada discreta de Fourier} (ou \textbf{DFT}) - uma transformada que pode ser entendida como uma decomposição de um sinal sonoro qualquer em senoides.
+
+    A transformada de Fourier de um sinal é uma representação em função da frequência. Esse tipo de representação, porém, não contempla informações temporais, isto é: apesar de se saber através dela quais frequências (e em que intensidade) estão presentes num sinal sonoro, não se sabe em quais intervalos de tempo essas frequências soaram.
+    
+    Como alternativa à DFT, existe a \textbf{STFT}, ou \textbf{transformada de Fourier de tempo curto}, que divide o sinal sonoro em janelas temporais de mesma duração e obtém a DFT de cada janela, possibilitando a extração de informações espectrais e temporais de um mesmo de áudio simultaneamente.
+    
+    Vale ressaltar que quanto mais curta é uma janela temporal, menor será a resolução de frequências que a DFT é capaz de representar  \citep[ver][seções 2.1 a 2.3]{dsp}. Dessa forma, faz-se necessário encontrar um equilíbrio entre a resolução temporal, que é privilegiada por janelas temporais mais curtas, e a resolução das frequências, que é privilegiada por janelas temporais mais longas.
+    
+    Uma das características da STFT é que ela oferece uma resolução igual para frequências graves e agudas. Ou seja, o número de pontos contemplados pela STFT entre 100~Hz e 200~Hz é o mesmo número de pontos contemplados entre 1100~Hz e 1200~Hz. Porém, devido à percepção humana de altura, que varia de forma logarítmica em função da variação de frequências, notas agudas terão uma resolução maior na STFT do que notas graves.
+    
+    Para obter uma resolução igual para diferentes notas musicais, pode-se usar uma outra transformada: a transformada Q-constante ou \textbf{CQT}. Ela também tem a função de levar um sinal sonoro da representação temporal para a espectral; contudo, aumenta a resolução das frequências graves e diminui a resolução das frequências agudas, igualando, assim, a resolução de cada nota musical. Ou seja, todas as notas musicais terão um mesmo número de representantes no espectrograma, o que não penaliza a amplitude associada às notas graves em relação às agudas \citep[ver][seção 3.4.1]{muller}.
+
+
+\section{Características harmônicas}
+\label{sec:cromagramas}
+    % cromagramas
+    Define-se \textbf{\textit{croma}} como um vetor real de dimensão 12 cujas entradas representam a intensidade com que uma classe de altura aparece num dado sinal de áudio. Tal vetor é indexado de 0 a 11, onde 0 é a classe dó~(C) e 11 a classe si~(B).
+    
+    Se dividirmos um sinal de áudio longo em janelas e associarmos a cada quadro uma \textit{chroma}, obteremos uma matriz chamada \textbf{cromagrama}. Cromagramas são análogos a espectrogramas, com a diferença de que um apresenta as intensidades de frequências presentes no sinal, enquanto outro apresenta intensidades de classes altura.
+
+    Esta seção entrará em maior profundidade em relação às características do cromagrama, em especial:
+
+    \begin{itemize}
+        \item Como construir
+        \item O que se perde no cromagrama
+    \end{itemize}
+
