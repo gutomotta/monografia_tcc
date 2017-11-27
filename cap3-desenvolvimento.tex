@@ -3,7 +3,7 @@
 % aqui a ênfase está nos algoritmos e sua avaliação
 
 \section{Classificação baseada em templates}
-\label{sec:classifier}
+\label{sec:classificador}
     % inclui templates binários e aprendidos, descrição do algoritmo e técnicas de aperfeiçoamento
     
     % introdução
@@ -159,8 +159,11 @@
         Um forma de tentar corrigir esse tipo de erro é construindo uma nova classificação a partir da classificação original. Nesta nova classificação, cada item será calculado a partir da classificação original através de um voto de maioria que considera o item original e seus vizinhos à esquerda e à direita. É necessário definir quantos vizinhos serão considerados.
         
         Os experimentos feitos neste trabalho mostraram que a pós-filtragem conforme definida acima traz certa melhoria na classificação. No entanto, essa melhoria não se acumula com a melhoria trazida pela técnica de suavização temporal. Isso se dá porque a aleatoriedade com que os acordes aparecem numa classificação diminui consideravelmente quando se aplica previamente uma suavização temporal nos cromas.
-        
-        
+
+%\section{Implementação}
+%\label{sec:implementacao} 
+    %O objetivo deste trabalho não é a implementação de um sistema de reconhecimento de acordes, mas sim o estudo detalhado e completo de um algoritmo que resolve este problema. As escolhas das tecnologias e arquitetura para a implementação do algoritmo observou tal consideração.
+
 \section{Metodologia de avaliação}
     % inclui comparação de acordes, ground-truth, precision e validação cruzada
     Numa aplicação prática, deseja-se que o algoritmo seja capaz de reconhecer os acordes tocados num fonograma com a maior acurácia possível. Para isso, é preciso decidir qual versão do algoritmo usar, onde uma versão é o algoritmo básico acrescentado de algum subconjunto das técnicas de aperfeiçoamento descritas na seção anterior.
@@ -224,6 +227,7 @@
 
 
 \section{Experimentos}
+
     Esta seção descreverá os experimentos feitos para tentar obter a melhor versão do algoritmo de classificação de acordes baseada em templates, além de estudar as razões que diferenciam os resultados entre distintas versões do algoritmo.
     
     Como são muitas as técnicas de aperfeiçoamento do algoritmo, foi necessário implementá-lo de uma forma geral, que permitisse a definição da versão através de passagem de parâmetros, além de um esquema de armazenamento de resultados que permitisse fácil identificação e comparação de resultados.
@@ -247,12 +251,63 @@
     Algumas intuições foram obtidas através das análises individuais dos resultados. Se fará a descrição desses casos na monografia final (como a canção Lovely Rita que está afinada com Lá em 430~Hz).
     
     % TODO: análises gerais. 
-    Para comparar os experimentos, se calculou a média das precisões obtidas e, em alguns casos, se observou a distribuição das precisões. Na monografia final se descreverão análises de como as técnicas de aperfeiçoamento influenciaram na alteração dos resultados.
+    Para comparar os experimentos, se calculou a média das precisões obtidas e, em alguns casos, se observou a distribuição das precisões. Na monografia final se descreverão análises de como as técnicas de aperfeiçoamento influenciaram na alteração dos resultados. Nesta versão, nos restringiremos à apresentação, no final desta seção, de algumas figuras que resumem alguns dos resultados, com breves descrições nas respectivas legendas.
     
     Em particular, se começará com a partição das versões em duas: as que fazem o uso da STFT e as que fazem o uso da CQT.
     
     Em seguida, se analisará a diferença entre o uso de templates binários e templates aprendidos.
     
     Depois, se dará foco à suavização temporal. Logo, à suavização espectral e, por último, à pós-filtragem e estimativa de afinação, que não apresentaram resultados tão significativos quanto as outras técnicas.
+
+
+    \begin{figure}[htb]
+        \begin{center}
+            \includegraphics[width=13cm]{figuras/01-templates-binarios-e-aprendidos.png}
+            \caption{\label{fig:exp:templates}Precisões médias obtidas com uso de templates binários e aprendidos.}
+        
+            \includegraphics[width=13cm]{figuras/02-stft-e-cqt-com-templates-binarios.png}
+            \caption{\label{fig:exp:chroma}Precisões médias obtidas com uso de STFT e CQT para construção do cromagrama.}
+        \end{center}
+    \end{figure}
     
-    Como conclusão da seção, se escolherá a versão com resultados considerados melhores.
+    \begin{figure}[htb]
+        \begin{center}
+            \includegraphics[width=16cm]{figuras/mayor_C.png}
+            \caption{\label{fig:exp:template_c}Visualização do cromagrama template construído a partir de cromas STFT e CQT do acorde \textbf{dó maior} (C). As notas marcadas com cores diferentes indicam as notas presentes no acorde. Nota-se que algumas delas possuem menos energia que outras notas, o que se concluiu que acontece por causa da presença de muitos harmônicos nos sinais de áudio usados para treinamento.}
+            
+            \includegraphics[width=16cm]{figuras/minor_C.png}
+            \caption{\label{fig:exp:template_cm}Visualização do cromagrama template construído a partir de cromas STFT e CQT do acorde \textbf{dó menor} (Cm). As notas marcadas com cores diferentes indicam as notas presentes no acorde.}
+        \end{center}
+    \end{figure}
+    
+    \begin{figure}[htb]
+        \begin{center}
+            \includegraphics[width=13cm]{figuras/03-stft-e-cqt-templates-bin-e-aprendidos.png}
+            \caption{\label{fig:exp:templates_chroma}Comparação entre a precisão média obtida por cromagramas construídos usando STFT, CQT e templates binários e aprendidos.}
+            
+            \includegraphics[width=13cm]{figuras/04-stft-e-cqt-bin-suavizacao-temporal.png}
+            \caption{\label{fig:exp:temporal}Impacto da suavização temporal com diferentes parâmetros sobre a precisão média do algoritmo.}
+        \end{center}
+    \end{figure}
+
+    \begin{figure}[htb]
+        \begin{center}
+            \includegraphics[width=13cm]{figuras/05-distribuicoes-stft-bin-aprendidos.png}
+            \caption{\label{fig:exp:dist:stft}Distribuição das precisões obtidas com STFT.}
+            
+            \includegraphics[width=13cm]{figuras/05-distribuicoes-cqt-bin-aprendidos.png}
+            \caption{\label{fig:exp:dist:cqt}Distribuição das precisões obtidas com CQT. Observe que as precisões mais baixas estão muito próximas de zero. Esse padrão se repete em todas as parametrizações do algoritmo, o que motivou uma análise caso a caso.}
+        \end{center}
+    \end{figure}
+
+    \begin{figure}[htb]
+        \begin{center}
+            \includegraphics[width=13cm]{figuras/05-distribuicoes-inicial.png}
+            \caption{\label{fig:exp:dist:primeiras}Distribuição das 10 piores precisões obtidas com diferentes versões do algoritmo. Nenhuma das técnicas de aperfeiçoamento implementadas nessas versões trouxe uma distribuição mais equilibrada: em todas, se observaram precisões muito próximas de zero.}
+            
+            
+            \includegraphics[width=13cm]{figuras/06-distribuicoes-stft-bin-smooth.png}
+            \caption{\label{fig:exp:dist:stft_smooth}Impacto da suavização temporal na distribuição das preciões obtidas nos experimentos.}
+        \end{center}
+    \end{figure}
+
