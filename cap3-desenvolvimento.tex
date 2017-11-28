@@ -160,9 +160,22 @@
         
         Os experimentos feitos neste trabalho mostraram que a pós-filtragem conforme definida acima traz certa melhoria na classificação. No entanto, essa melhoria não se acumula com a melhoria trazida pela técnica de suavização temporal. Isso se dá porque a aleatoriedade com que os acordes aparecem numa classificação diminui consideravelmente quando se aplica previamente uma suavização temporal nos cromas.
 
-%\section{Implementação}
-%\label{sec:implementacao} 
-    %O objetivo deste trabalho não é a implementação de um sistema de reconhecimento de acordes, mas sim o estudo detalhado e completo de um algoritmo que resolve este problema. As escolhas das tecnologias e arquitetura para a implementação do algoritmo observou tal consideração.
+\section{Implementação}
+\label{sec:implementacao} 
+    O objetivo deste trabalho não é a implementação de um sistema de reconhecimento de acordes, mas sim o estudo detalhado e completo de um algoritmo que resolve este problema. As escolhas das tecnologias e arquitetura para a implementação do algoritmo observou tal consideração.
+    
+    A linguagem escolhida para implementação foi Ruby, devido à facilidade para construção de um código-fonte legível e à forte familiaridade do autor com ela.
+    
+    % TODO citar a librosa da maneira devida (arrumar a entrada dela na bibliografia
+    Para as funções clássicas de processamento de áudio - como construção de espectrograma, cromagrama e estimativa de afinação - utilizou-se o \cite{librosa}, um pacote escrito em Python e de simples uso.
+
+    Para o uso de um pacote escrito em Python num software escrito em Ruby, utilizou-se a \textit{gem} \href{https://rubygems.org/gems/pycall/versions/1.0.3}{PyCall}, que possibilitou a adição de uma interface para o Librosa de forma direta.
+    
+    O \href{https://github.com/gutomotta/chors}{código} foi estruturado de forma que se pudesse rodar experimentos de forma automatizada. Portanto, foi necessário permitir que a seleção das técnicas de aperfeiçoamento do algoritmo fosse feita via passagem de parâmetros.
+    
+    Para organizar os experimentos, utilizou-se armazenamento de resultados em disco (com identificadores únicos definidos pelos parâmetros) e carregamento preguiçoso dos resultados, de forma que os experimentos rodados alguma vez em uma certa máquina não precisassem ser rodados novamente caso se desejasse rever os resultados.
+    
+    A geração de gráficos para análise de dados durante os experimentos foi feita com a \textit{gem} \href{https://github.com/topfunky/gruff}{gruff}.
 
 \section{Metodologia de avaliação}
     % inclui comparação de acordes, ground-truth, precision e validação cruzada
@@ -259,6 +272,7 @@
     
     Depois, se dará foco à suavização temporal. Logo, à suavização espectral e, por último, à pós-filtragem e estimativa de afinação, que não apresentaram resultados tão significativos quanto as outras técnicas.
 
+    Os gráficos a seguir trazem dados brutos dos experimentos realizados, que serão melhor apresentados e discutidos na versão final.
 
     \begin{figure}[htb]
         \begin{center}

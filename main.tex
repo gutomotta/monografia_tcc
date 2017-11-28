@@ -50,7 +50,7 @@
 % Opções de listing usados para o código fonte
 % Ref: http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
 \lstset{ %
-language=Java,                  % choose the language of the code
+language=Ruby,                  % choose the language of the code
 basicstyle=\footnotesize,       % the size of the fonts that are used for the code
 numbers=left,                   % where to put the line-numbers
 numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
@@ -102,7 +102,7 @@ framexrightmargin=10pt
     \vspace*{2.3cm}
     Universidade de São Paulo\\
     Instituto de Matemática e Estatística\\
-    Bachalerado em Ciência da Computação
+    Bacharelado em Ciência da Computação
 
 
     \vspace*{3cm}
@@ -116,7 +116,7 @@ framexrightmargin=10pt
     \vskip 5cm
     \normalsize{São Paulo}
 
-    \normalsize{Dezembro de 2017}
+    \normalsize{Novembro de 2017}
 \end{center}
 
 % ------------------------------------------------------ %
@@ -145,26 +145,23 @@ framexrightmargin=10pt
     \vskip 5cm
     \normalsize{São Paulo}
 
-    \normalsize{Dezembro de 2017}
+    \normalsize{Novembro de 2017}
     \end{center}
 \pagebreak
 
 \pagenumbering{roman}     % começamos a numerar 
 
 \chapter*{Resumo}
-Elemento obrigatório, constituído de uma sequência de frases concisas e objetivas, em forma de texto.  Deve apresentar os objetivos, métodos empregados, resultados e conclusões.  O resumo deve ser redigido em parágrafo único, conter no máximo 500 palavras e ser seguido dos termos representativos do conteúdo do trabalho (palavras-chave).
-\\
+O reconhecimento automatizado de acordes é um processo no qual, dado um sinal de áudio de uma música, se produz uma sequência de etiquetas, cada uma representando um acorde, acompanhadas dos respectivos tempos de início e fim de cada acorde que é tocado na música. Neste trabalho, se descreverá o problema de forma detalhada, passando pelos conceitos teóricos envolvidos, e se estudará e implementará uma solução particular, proposta em \cite{muller}. Também se discutirá um método de avaliação do algoritmo, através da obtenção de estatísticas comparativas entre dados rotulados automaticamente e dados de treinamento previamente rotulados, usando estratégias como validação cruzada e a medida de precisão, típica de recuperação de informação. A melhor precisão média obtida nos experimentos foi de 55\%, usando CQT para extração de cromagramas e suavização temporal dos cromas antes da etapa de casamento de padrões do algoritmo apresentado. \\
 
-\noindent \textbf{Palavras-chave:} palavra-chave1, palavra-chave2, palavra-chave3.
+\noindent \textbf{Palavras-chave:} processamento de sinais digitais, recuperação de informação musical, reconhecimento de acordes.
 
 % ------------------------------------------- %
 % Abstract
 \chapter*{Abstract}
+Chord recognition is the process where, given an audio signal representation of a song, it is produced a label sequence, each one representing a chord, and its respective onset and offset times where the chords sound on the song. In this work, we describe the problem of chord recognition in a detailed way, going through the involved concepts, and study and implement a particular solution presented in \cite{muller}. We also discuss a method for evaluating such algorithm, through the computation of statistics of comparison between automatically labeled data and ground-truth data, using strategies such as k-fold cross-validation and the measure of precision, typical in the information retrieval field. The best average precision obtained in the experiments were 55\%, using CQT for chromagram extraction and temporal smoothing of chromas before the pattern matching step of the presented algorithm. \\
 
-Elemento obrigatório, elaborado com as mesmas características do resumo em língua portuguesa.
-\\
-
-\noindent \textbf{Keywords:} keyword1, keyword2, keyword3.
+\noindent \textbf{Keywords:} digital signal processing, musical information retrieval, chord recognition.
 
 
 % -------------------------------------------------------- %
