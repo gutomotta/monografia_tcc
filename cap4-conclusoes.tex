@@ -1,4 +1,8 @@
 \chapter{Conclusões}
 \label{cap:conclusoes}
 
-    As conclusões deste trabalho serão escritas na monografia final, onde se certificará de relembrar o contexto geral do problema, comparar os objetivos iniciais e os resultados obtidos e apresentar perspectivas de trabalhos futuros, com melhorias e caminhos não explorados que o leitor interessado poderá seguir.
+    Neste trabalho, se estudou o problema de reconhecimento de acordes e uma solução particular para ele: a classificação baseada em templates. Se discutiram pontos do algoritmo em que se poderia experimentar técnicas para aperfeiçoá-lo. Se descreveu um método de avaliação do algoritmo que foi usado experimentalmente para decidir se as técnicas de aperfeiçoamento discutidas apresentariam ou não melhorias na prática.
+    
+    Dadas as simplificações adotadas, consideraram-se satisfatórios os resultados obtidos, que alcançaram uma precisão média de ${52}\%$ numa base de 180 fonogramas. Para algumas das possíveis técnicas de aperfeiçoamento descritas, não se pode observar experimentalmente uma melhoria nos resultados, como no caso do uso de templates aprendidos a partir de anotações de referência; para outras, pode-se observar um ganho significativo: como no caso da suavização temporal de cromas e no uso da transformada Q-constante em vez da transformada de Fourier, técnicas que se conclui serem essenciais para construir um algoritmo classificador de acordes baseado em templates.
+    
+    Muitos caminhos ainda podem ser explorados no estudo de reconhecimento de acordes. O algoritmo apresentado não classifica intervalos do sinal sem acordes, e usa um conjunto pequeno de acordes passíveis de classificação - diversos acordes poderiam ser incluídos. Além disso, se poderia estudar algoritmos que fazem uso de técnicas de aprendizado de máquina para aperfeiçoar a classificação.

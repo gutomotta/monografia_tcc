@@ -25,6 +25,7 @@
 \usepackage[all]{hypcap}                    % soluciona o problema com o hyperref e capitulos
 \usepackage[round,sort,nonamebreak]{natbib} % citação bibliográfica textual(plainnat-ime.bst)
 \usepackage{emptypage}  % para não colocar número de página em página vazia
+\usepackage[output-decimal-marker={,}]{siunitx}
 \fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
 
 % ------------------------------------------------------------------ %
@@ -110,13 +111,13 @@ framexrightmargin=10pt
     
 
     \vspace{3cm}
-    \textbf{\Large{Reconhecimento Automatizado de Acordes}}
+    \textbf{\Large{Reconhecimento Automatizado de Acordes \\ em Sinais de Áudio}}
     
-       
+
     \vskip 5cm
     \normalsize{São Paulo}
 
-    \normalsize{Novembro de 2017}
+    \normalsize{Fevereiro de 2018}
 \end{center}
 
 % ------------------------------------------------------ %
@@ -126,14 +127,14 @@ framexrightmargin=10pt
 \thispagestyle{empty}
     \begin{center}
         \vspace*{2.3 cm}
-        \textbf{\Large{Reconhecimento Automatizado de Acordes}}
+        \textbf{\Large{Reconhecimento Automatizado de Acordes \\ em Sinais de Áudio}}
         \vspace*{2 cm}
     \end{center}
 
     \vskip 2cm
 
     \begin{flushright}
-	Monografia parcial da disciplina \\
+	Monografia final da disciplina \\
         MAC0499 -- Trabalho de Formatura Supervisionado.
     \end{flushright}
 
@@ -145,21 +146,21 @@ framexrightmargin=10pt
     \vskip 5cm
     \normalsize{São Paulo}
 
-    \normalsize{Novembro de 2017}
+    \normalsize{Fevereiro de 2018}
     \end{center}
 \pagebreak
 
 \pagenumbering{roman}     % começamos a numerar 
 
 \chapter*{Resumo}
-O reconhecimento automatizado de acordes é um processo no qual, dado um sinal de áudio de uma música, se produz uma sequência de etiquetas, cada uma representando um acorde, acompanhadas dos respectivos tempos de início e fim de cada acorde que é tocado na música. Neste trabalho, se descreverá o problema de forma detalhada, passando pelos conceitos teóricos envolvidos, e se estudará e implementará uma solução particular, proposta em \cite{muller}. Também se discutirá um método de avaliação do algoritmo, através da obtenção de estatísticas comparativas entre dados rotulados automaticamente e dados de treinamento previamente rotulados, usando estratégias como validação cruzada e a medida de precisão, típica de recuperação de informação. A melhor precisão média obtida nos experimentos foi de 55\%, usando CQT para extração de cromagramas e suavização temporal dos cromas antes da etapa de casamento de padrões do algoritmo apresentado. \\
+O reconhecimento automatizado de acordes é um processo no qual, dado um sinal de áudio de uma música, se produz uma sequência de etiquetas, cada uma representando um acorde, acompanhadas dos respectivos tempos de início e fim de cada acorde que é tocado na música. Neste trabalho, se descreverá o problema de forma detalhada, passando pelos conceitos teóricos envolvidos, e se estudará e implementará uma solução particular, proposta em \cite{muller}. Também se discutirá um método de avaliação do algoritmo, através da obtenção de estatísticas comparativas entre dados rotulados automaticamente e dados de treinamento previamente rotulados, usando estratégias como validação cruzada e a medida de precisão, típica de recuperação de informação. A melhor precisão média obtida nos experimentos foi de 52\%, usando CQT para extração de cromagramas e suavização temporal dos cromas antes da etapa de casamento de padrões do algoritmo apresentado. \\
 
 \noindent \textbf{Palavras-chave:} processamento de sinais digitais, recuperação de informação musical, reconhecimento de acordes.
 
 % ------------------------------------------- %
 % Abstract
 \chapter*{Abstract}
-Chord recognition is the process where, given an audio signal representation of a song, it is produced a label sequence, each one representing a chord, and its respective onset and offset times where the chords sound on the song. In this work, we describe the problem of chord recognition in a detailed way, going through the involved concepts, and study and implement a particular solution presented in \cite{muller}. We also discuss a method for evaluating such algorithm, through the computation of statistics of comparison between automatically labeled data and ground-truth data, using strategies such as k-fold cross-validation and the measure of precision, typical in the information retrieval field. The best average precision obtained in the experiments were 55\%, using CQT for chromagram extraction and temporal smoothing of chromas before the pattern matching step of the presented algorithm. \\
+Chord recognition is the process where, given an audio signal representing of a song, a label sequence is produced, where each label represents a chord and its respective onset and offset times. In this work, we describe the problem of chord recognition in a detailed way, going through the involved concepts, and discuss and implement a particular solution presented in \cite{muller}. We also discuss a method for evaluating such an algorithm, through the computation of comparison statistics between automatically labeled data and ground-truth data, using strategies such as k-fold cross-validation and the measure of precision, typical in the information retrieval field. The best average precision obtained in the experiments were 52\%, using CQT for chromagram extraction and temporal smoothing of chromas before the pattern matching step of the presented algorithm. \\
 
 \noindent \textbf{Keywords:} digital signal processing, musical information retrieval, chord recognition.
 
